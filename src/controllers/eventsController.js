@@ -60,7 +60,7 @@ export const getSingleEventById = async (req, res) => {
 
 // ######################################## Update #####################################################
 // -------------------------------------- Update User --------------------------------------------------
-export const updateUser = async (req, res) => {
+export const updateEvent = async (req, res) => {
 	const { eventId } = req.params;
 	const { event } = req.body;
 	try {
