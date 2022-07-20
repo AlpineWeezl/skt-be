@@ -1,3 +1,5 @@
+import { Event } from "../models/Event.js";
+
 // ###################################################################################################
 // ######################################## BASIC CRUD ###############################################
 // ###################################################################################################
@@ -5,17 +7,16 @@
 // ########################################## Create #################################################
 // ------------------------------------------ Sign up ------------------------------------------------
 export const createEvent = async (req, res) => {
-	const { event } = req.body;
+	const { event, newUser } = req.body;
 	try {
-		const newEvent = {
-			event,
-		};
-		const createdEvent = await Event.create(newUser);
+		event.admin = newUser._id;
+		const createdEvent = await Event.create(event);
 		res.status(201).json({
-			event: createEvent,
+			event: createdEvent,
 			message: "Event created, successfully",
 		});
 	} catch (error) {
+		console.log(error);
 		res.status(500).json({ error: "Creation of new event failed!" });
 	}
 };
@@ -86,6 +87,19 @@ export const deleteEvent = async (req, res) => {
 			message: `Event ${eventId} successfully deleted!`,
 		});
 	} catch (error) {
+		console.log(error);
 		res.status(500).json({ error: "Deleting of the event failed!" });
+	}
+};
+
+export const deleteAllEventsByUserId = async (req, res) => {
+	const { userId } = req.params;
+	try {
+		await Event.deleteMany({ admin: userId });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			error: "Deleting of the events from user failed!",
+		});
 	}
 };

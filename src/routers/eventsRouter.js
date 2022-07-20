@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
 	createEvent,
 	deleteEvent,
+	getAllEvents,
 	getAllEventsByUserId,
 	getSingleEventById,
 	updateEvent,
@@ -16,8 +17,8 @@ export const eventsRouter = Router();
 
 eventsRouter
 	.route("/")
-	.get(authorization, adminCheck, getAllUsers)
-	.post(authorization, createEvent) // The token will be created after creating user, because of the need of the userId
+	.get(authorization, adminCheck, getAllEvents)
+	.post(authorization, createEvent)
 	.all();
 
 eventsRouter
