@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUser, deleteUser, getAllUsers, getSingleUserByUserId, logIn, updateUser, verifySession } from "../controller/usersController.js";
+import { createUser, deleteUser, getAllUsers, getSingleUserByUserId, logIn, updateUser, verifySession } from "../controllers/usersController.js";
 import { adminCheck, authorization, createToken, encryptPassword, credentialCheck, ownAccount } from "../middlewares/auth.js";
 import { doubleEmailUsernameCheck } from "../middlewares/userChecks.js";
 
