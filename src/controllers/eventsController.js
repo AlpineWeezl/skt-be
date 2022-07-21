@@ -59,6 +59,21 @@ export const getSingleEventById = async (req, res) => {
 	}
 };
 
+export const getSingleEventWithAllDetailsById = async (req, res) => {
+	const { eventId } = req.params;
+	try {
+		const event = await Event.findById(eventId).populate({
+			path: "tables",
+			populate: {
+				path: "players",
+			},
+		});
+		res.status(200).json({ event: event, message: `Event found.` });
+	} catch (error) {
+		res.status(500).json({ error: "Event request failed" });
+	}
+};
+
 // ######################################## Update #####################################################
 // -------------------------------------- Update User --------------------------------------------------
 export const updateEvent = async (req, res) => {
