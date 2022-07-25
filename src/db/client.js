@@ -1,8 +1,6 @@
-import { MongoClient } from "mongodb"
 import mongoose from "mongoose";
 
 const dbURL = process.env.MONGO_CONN;
-// const client = new MongoClient(dbURL);
 
 try {
     mongoose.connect(dbURL);

@@ -2,9 +2,10 @@ import "dotenv/config";
 import express from "express";
 import "./src/db/client.js";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
 import { usersRouter } from "./src/routers/usersRouter.js";
 import { eventsRouter } from "./src/routers/eventsRouter.js";
-
+import { specs } from "./src/doc/swagger.js";
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -23,7 +24,8 @@ app.use(cors(corsOptions));
 // ############################################################################################
 // ----------------------------- Router -------------------------------------------------------
 // ############################################################################################
-
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(specs));
+// console.log(specs);
 app.use("/api/users", usersRouter);
 app.use("/api/events", eventsRouter);
 
