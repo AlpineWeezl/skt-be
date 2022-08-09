@@ -23,10 +23,10 @@ export const createToken = async (req, res, next) => {
 	try {
 		if (user) {
 			const foundUser = await User.findOne({
-				or: [{ email: user.email }, { username: user.username }],
+				or: [{ email: user.email.toLowerCase() }, { username: user.username.toLowerCase() }],
 			});
 			const userId = foundUser._id;
-			const email = foundUser.email;
+			const email = foundUser.email.toLowerCase();
 			const username = foundUser.username;
 			req.body.user = foundUser;
 			const token = jwt.sign(
