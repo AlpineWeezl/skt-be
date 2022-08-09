@@ -15,7 +15,7 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const corsOptions = {
-	origin: process.env.REACT_APP_URI, // Zugriff nur von dieser Domain erlauben
+	origin: process.env.REACT_APP, // Zugriff nur von dieser Domain erlauben
 	exposedHeaders: "Authorization", //dem Frontend Zugriff auf die Header-Property "Authorization" geben
 };
 // app.use(express());

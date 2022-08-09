@@ -9,6 +9,7 @@ import { User } from "../models/User.js";
 export const createUser = async (req, res) => {
 	const { user, encryptedPassword } = req.body;
 	const { token } = req.headers;
+	user.email = user.email.toLowerCase();
 	try {
 		const newUser = {
 			...user,
